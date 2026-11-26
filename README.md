@@ -10,6 +10,8 @@ The orchestrator chooses the tier. The skill compares usage windows, recent burn
 
 ![Strong job moves from a nearly exhausted Codex window to Claude, with the API held in reserve](docs/tier-routing.svg)
 
+The matrix shows four providers as an example. Fuel Gauge knows all **45 agents Orca can launch**: it detects which are installed, reads usage wherever the provider exposes it, and lists the rest as installed with no usage data. See [Supported providers](#supported-providers) and [docs/providers.md](docs/providers.md).
+
 ## Supported providers
 
 | Provider | How billed | What Fuel Gauge can read | Status |
