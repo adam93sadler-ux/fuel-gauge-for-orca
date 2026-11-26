@@ -4,7 +4,7 @@
   "execution": "trusted-worker",
   "id": "fuel-gauge",
   "name": "Fuel Gauge",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Local AI usage and DeepSeek API balance in Orca, with a shared snapshot for the Fuel Gauge skill.",
   "author": {
     "name": "Fuel Gauge contributors"

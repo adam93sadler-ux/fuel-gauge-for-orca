@@ -12,12 +12,55 @@ The orchestrator chooses the tier. The skill compares usage windows, recent burn
 
 ## Supported providers
 
-| Provider | Reading | Local prerequisite |
-| --- | --- | --- |
-| Claude | Five-hour, weekly and supported model-specific usage | Claude Code OAuth login file |
-| Codex / ChatGPT | Subscription windows or monthly spend-control percentage | Codex signed in with ChatGPT |
-| Antigravity / Gemini | Quota by model pool | Native Antigravity login and agy 1.1.11 or newer with read-only /usage |
-| DeepSeek | API balance by currency | Existing key in ~/.config/deepseek/api_key |
+| Provider | How billed | What Fuel Gauge can read | Status |
+|---|---|---|---|
+| claude | Subscription or API | ✓ OAuth windows | tested |
+| claude-agent-teams | Shared Claude account | ✓ Shared Claude windows | experimental |
+| codebuddy | Free or subscription credits | — Installation only | experimental |
+| openclaude | Selected model backend | — Installation only | experimental |
+| codex | ChatGPT plan or API | ✓ ChatGPT windows | tested |
+| autohand | Plan credits | — Installation only | experimental |
+| ante | Local inference or selected backend | — Installation only | experimental |
+| trae | Free access or selected backend | — Installation only | experimental |
+| opencode | Selected backend (hosted or local) | — Installation only | experimental |
+| opencode2 | Selected backend (hosted or local) | — Installation only | experimental |
+| mimo-code | Token plan or API | — Installation only | experimental |
+| pi | Selected backend (hosted or local) | — Installation only | experimental |
+| omp | Selected backend (hosted or local) | — Installation only | experimental |
+| prime-agent | Inference API or selected backend | — Installation only | experimental |
+| qoder | Plan or credits | — Installation only | experimental |
+| qoder-cn | Plan or credits | — Installation only | experimental |
+| gemini | Google plan or API | ~ Google OAuth quota buckets | experimental |
+| antigravity | Google plan | ✓ Model pools | tested |
+| aider | Selected backend (hosted or local) | — Installation only | experimental |
+| goose | Selected backend (hosted or local) | — Installation only | experimental |
+| amp | Plan or credits | ~ Free allowance and individual credit balance | experimental |
+| kilo | Selected backend (hosted or local) | — Installation only | experimental |
+| kiro | Plan or credits | — Installation only | experimental |
+| crush | Selected backend (hosted or local) | — Installation only | experimental |
+| aug | Plan or credits | — Installation only | experimental |
+| cline | Selected backend (hosted or local) | — Installation only | experimental |
+| freebuff | Free tier | — Installation only | experimental |
+| codebuff | Plan or credits | — Installation only | experimental |
+| command-code | Monthly model credits | — Installation only | experimental |
+| continue | Selected backend (hosted or local) | — Installation only | experimental |
+| cursor | Plan or credits | ~ File-backed CLI monthly usage | experimental |
+| droid | Plan or credits | — Installation only | experimental |
+| kimi | Plan or credits | ~ Managed OAuth quota | experimental |
+| mistral-vibe | Plan or API | — Installation only | experimental |
+| qwen-code | Selected model backend | — Installation only | experimental |
+| rovo | Plan or credits | — Installation only | experimental |
+| hermes | Selected backend (hosted or local) | ~ Default-profile Codex | experimental |
+| openclaw | Selected backend (hosted or local) | — Installation only | experimental |
+| copilot | Plan or credits | — Installation only | experimental |
+| grok | Grok plan or API | — Installation only | experimental |
+| muse | API token usage | — Installation only | experimental |
+| dsh | API balance | ✓ DeepSeek balance | tested |
+| zcode | Coding plan or API | ~ Legacy Coding Plan quota | experimental |
+| devin | Plan or credits | — Installation only | experimental |
+| jcode | Subscription or selected backend | — Installation only | experimental |
+
+[Detection and account sources](docs/providers.md)
 
 ## Install
 

@@ -15,13 +15,14 @@ Each subscription has its own allowance (5-hourly, weekly, monthly). Fuel Gauge 
 
 Model and provider names change every few months. Always reason in tiers, and treat the table below as an example to adapt to the owner's subscriptions.
 
-| Tier | Meaning | Claude | Codex (ChatGPT) | Antigravity (Gemini) |
-|---|---|---|---|---|
-| Top | Hardest reasoning, big redesigns, deep reviews | Fable | Astra (`gpt-6.2-astra`) | Neon (`gemini-4-neon-high`) |
-| Strong | Everyday serious work: features, bugs, design | Opus | Sol (`gpt-6.2-sol`) | Neon (`gemini-4-neon-medium`/`-high`) |
-| Efficient | Routine, bulk, mechanical: releases, translations, simple edits | Sonnet | Luna / Terra (`gpt-6-luna`, `gpt-6.1-terra`) | Hydrogen (`gemini-4-hydrogen-sonar`) |
+| Provider example | Efficient work | Strong work | Top-tier work |
+| --- | --- | --- | --- |
+| Codex | Lightweight coding model | General coding model | Frontier reasoning model |
+| Gemini or Antigravity | Flash-class model | Pro-class model | Highest reasoning setting when appropriate |
+| Claude or Claude Agent Teams | Lightweight Claude model | General Claude model | Frontier Claude model |
+| Hermes, Pi or OpenCode | Map the selected backend model to its tier before routing | Same | Same |
 
-Haiku-class models aren't used in this setup. When names change, update the table from the provider's own model list (e.g. `codex debug models`) and note the date.
+An owner-confirmed allowance makes an installed provider with unknown usage eligible at the requested tier. Shared accounts (including Claude Agent Teams) draw on the same allowance. Use any snapshot provider ID in the ignore list.
 
 **Default effort: medium** for every model, unless the owner says otherwise.
 
@@ -45,7 +46,7 @@ The script records each reading in `~/.local/share/fuel-gauge/readings.jsonl` an
 
 Relay a new "stopped reporting" notice from the script to the owner once, with its suggested fix. A notice is based on a fresh plugin snapshot and a previous successful reading (`lastOkAt`). A provider can trigger a new notice after it recovers and fails again. Treat a stale snapshot as a reason to fall back to local readings.
 
-If the owner says they no longer uses a provider, add its ID (`claude`, `codex`, `antigravity` or `deepseek`) to the JSON array in `~/.local/share/fuel-gauge/ignored-providers.json`. Preserve other entries. The skill and plugin will skip it. Remove the ID from that array to re-enable it.
+If the owner says they no longer uses a provider, add its ID (as listed in the snapshot) to the JSON array in `~/.local/share/fuel-gauge/ignored-providers.json`. Preserve other entries. The skill and plugin will skip it. Remove the ID from that array to re-enable it.
 
 ## 4. Pace: how often to check
 

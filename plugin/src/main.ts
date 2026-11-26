@@ -3,14 +3,14 @@ import { randomUUID } from 'node:crypto'
 import { mkdir, readFile, rename, unlink, writeFile } from 'node:fs/promises'
 import { homedir } from 'node:os'
 import { join } from 'node:path'
-import { providers, ReadingError, type Usage } from './providers'
+import { adapters, inventory, ReadingError, type Usage } from './providers'
 
 const directory = join(homedir(), '.local/share/fuel-gauge')
 const latest = join(directory, 'latest.json')
-type Provider = keyof typeof providers
-type Reading = Usage & { setUp: boolean; ok: boolean; lastOkAt: string | null; error: string | null }
+type Provider = string
+type Reading = Usage & { setUp: boolean; ok: boolean; lastOkAt: string | null; reason?: string; error: string | null }
 type Snapshot = { updatedAt: string; refreshMinutes: number; providers: Partial<Record<Provider, Reading>> }
-const ids = Object.keys(providers) as Provider[]
+
 const minuteMs = 60_000
 let refreshMinutes = 15
 let lastRefreshAt: number | undefined
@@ -49,10 +49,10 @@ async function readJson(path: string): Promise<unknown> {
   }
 }
 
-async function readProvider(id: Provider, lastOkAt: string | null): Promise<Reading | undefined> {
+async function readProvider(adapter: ReturnType<typeof adapters>[string], lastOkAt: string | null): Promise<Reading | undefined> {
   let setUp = true
   try {
-    const query = await providers[id]()
+    const query = await adapter.detect()
     if (!query) {
       setUp = false
       if (!lastOkAt) return
@@ -62,8 +62,9 @@ async function readProvider(id: Provider, lastOkAt: string | null): Promise<Read
     if (!reading.windows.length && !reading.balances?.length) throw new ReadingError('no quota or balance in the reply')
     return { ...reading, setUp, ok: true, lastOkAt: new Date().toISOString(), error: null }
   } catch (error) {
-    return { setUp, ok: false, windows: [], lastOkAt,
-      error: error instanceof ReadingError ? error.message : 'unable to read usage' }
+    const reason = error instanceof ReadingError ? error.message : 'unable to read usage'
+    return { reason, setUp, ok: false, windows: [], lastOkAt,
+      error: reason }
   }
 }
 
@@ -102,8 +103,10 @@ async function refreshOnce(orca: OrcaWorkerApi): Promise<Status> {
     const ignoreFile = await readJson(join(directory, 'ignored-providers.json'))
     const ignored = new Set(Array.isArray(ignoreFile) ? ignoreFile : [])
     const state = (await orca.storage.get('lastOkAt').catch(() => null) ?? {}) as Partial<Record<Provider, string>>
+    const providers = adapters(await inventory())
+    const ids = Object.keys(providers)
     const readings = await Promise.all(ids.filter((id) => !ignored.has(id)).map(async (id) =>
-      [id, await readProvider(id, previous?.providers?.[id]?.lastOkAt ?? state[id] ?? null)] as const
+      [id, await readProvider(providers[id], previous?.providers?.[id]?.lastOkAt ?? state[id] ?? null)] as const
     ))
     const snapshot: Snapshot = { updatedAt: new Date().toISOString(), refreshMinutes, providers: {} }
     for (const [id, reading] of readings) {

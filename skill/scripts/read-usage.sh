@@ -120,7 +120,9 @@ ignored = {item for item in ignored if isinstance(item, str)} if isinstance(igno
 snapshot = read_json(shared / 'latest.json')
 plugin = fresh(snapshot)
 providers = snapshot['providers'] if plugin else local_readings(ignored)
-providers = {key: value for key, value in providers.items() if key in names and key not in ignored}
+providers = {key: value for key, value in providers.items() if key not in ignored}
+for key in providers:
+    names.setdefault(key, key)
 entry = {'at': now.isoformat(), 'source': 'plugin' if plugin else 'local', 'providers': providers}
 print(f"Fuel Gauge reading from {'Orca plugin at ' + snapshot['updatedAt'] if plugin else 'local transcripts'}")
 for key, label in names.items():
@@ -158,7 +160,7 @@ with (shared / '.readings.lock').open('a') as lock:
                 if reason == 'usage endpoint is rate limiting requests':
                     fix = 'Wait for the next refresh.'
                 else:
-                    fix = fixes[key]
+                    fix = fixes.get(key, 'Check the provider login and refresh.')
                 print(f'{label} stopped reporting ({reason}). {fix}')
                 notified = last_ok
             state[key] = {'lastOkAt': last_ok, 'notifiedFor': notified}
