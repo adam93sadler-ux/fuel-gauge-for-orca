@@ -89,11 +89,17 @@ ln -s "$PWD/skill" ~/.agents/skills/fuel-gauge
 
 Keep the checkout in place. The reader requires Bash and Python 3. Run `./skill/scripts/read-usage.sh` to inspect a reading.
 
-## Refresh and configuration
+## Configuration
 
 ![Status bar examples showing a recent refresh and an inactive gauge](docs/status-bar.svg)
 
-Click the gauge or run **Fuel Gauge: Refresh now**. The interval in plugin settings defaults to 15 minutes with a five-minute minimum. The bar becomes inactive after 1.5 refresh intervals. Its age describes the last snapshot write. Check each provider's status for individual failures.
+Click **Fuel Gauge** in the status bar to open its controls. The minutes field shows the current interval. Enter a whole number from 1 to 1440 and choose **Save interval** or press Enter. Invalid input uses the 15-minute default. Choose **Refresh now** to check all providers immediately, or use **Fuel Gauge: Refresh now** from the command palette.
+
+The same setting is available in Orca under **Settings → Plugins → Fuel Gauge**. Changes take effect immediately and apply to every provider.
+
+During heavy testing, fixed polling missed allowances running out in time and some jobs stopped on usage limits. Use a shorter interval for heavy sessions and a longer one for light use. The default is 15 minutes.
+
+The bar becomes inactive after 1.5 refresh intervals. Its age describes the last snapshot write. Check each provider’s status for individual failures.
 
 To skip providers, create a JSON array at `~/.local/share/fuel-gauge/ignored-providers.json`, for example `["antigravity", "deepseek"]`. Remove an ID to resume collection.
 

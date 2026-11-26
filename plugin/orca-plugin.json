@@ -4,7 +4,7 @@
   "execution": "trusted-worker",
   "id": "fuel-gauge",
   "name": "Fuel Gauge",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Local AI usage and DeepSeek API balance in Orca, with a shared snapshot for the Fuel Gauge skill.",
   "author": {
     "name": "Fuel Gauge contributors"
@@ -19,17 +19,21 @@
     "statusBarItems": [
       {
         "id": "fuel-gauge",
-        "text": "Fuel Gauge · inactive",
+        "text": "Fuel Gauge \u00b7 inactive",
         "icon": "gauge",
         "tone": "warning",
-        "tooltip": "Click to refresh",
-        "command": "fuel-gauge.refresh"
+        "tooltip": "Click to refresh or change how often it checks",
+        "command": "fuel-gauge.open"
       }
     ],
     "commands": [
       {
         "id": "fuel-gauge.refresh",
         "title": "Fuel Gauge: Refresh now"
+      },
+      {
+        "id": "fuel-gauge.open",
+        "title": "Fuel Gauge: Open controls"
       }
     ],
     "settings": [
@@ -38,7 +42,17 @@
         "title": "Refresh interval (minutes)",
         "type": "integer",
         "default": 15,
-        "minimum": 5
+        "minimum": 1,
+        "maximum": 1440
+      }
+    ],
+    "panels": [
+      {
+        "id": "interval",
+        "title": "Fuel Gauge",
+        "icon": "gauge",
+        "ui": "components",
+        "entry": "src/panel.tsx"
       }
     ]
   },

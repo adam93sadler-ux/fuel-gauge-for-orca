@@ -1,8 +1,11 @@
 import type { OrcaWorkerApi } from 'orca/worker'
 import { randomUUID } from 'node:crypto'
-import { mkdir, readFile, rename, unlink, writeFile } from 'node:fs/promises'
+import { access, mkdir, readFile, rename, unlink, writeFile } from 'node:fs/promises'
 import { homedir } from 'node:os'
-import { join } from 'node:path'
+import { basename, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { run } from './adapters/shared'
+import { defaultRefreshMinutes, parseRefreshMinutes } from './interval'
 import { adapters, inventory, ReadingError, type Usage } from './providers'
 
 const directory = join(homedir(), '.local/share/fuel-gauge')
@@ -12,7 +15,9 @@ type Reading = Usage & { setUp: boolean; ok: boolean; lastOkAt: string | null; r
 type Snapshot = { updatedAt: string; refreshMinutes: number; providers: Partial<Record<Provider, Reading>> }
 
 const minuteMs = 60_000
-let refreshMinutes = 15
+const tooltip = 'Click to refresh or change how often it checks'
+let refreshMinutes = defaultRefreshMinutes
+let settingsRevision = 0
 let lastRefreshAt: number | undefined
 let refreshTimer: ReturnType<typeof setTimeout> | undefined
 let displayTimer: ReturnType<typeof setInterval> | undefined
@@ -25,11 +30,45 @@ export default function activate(orca: OrcaWorkerApi): void {
   disposed = false
   subscriptions.push(
     orca.commands.register('fuel-gauge.refresh', () => { void refresh(orca) }),
+    orca.commands.register('fuel-gauge.open', openPanel),
     orca.panels.handle('refresh', () => refresh(orca)),
-    orca.settings.onDidChange(() => { void refresh(orca) })
+    orca.settings.onDidChange(({ key }) => {
+      if (key === 'refreshMinutes') void applySettings(orca)
+    })
   )
   displayTimer = setInterval(() => { void paintStatus(orca) }, minuteMs)
-  void refresh(orca)
+  void applySettings(orca)
+}
+
+async function openPanel(_args: unknown, { signal }: { signal: AbortSignal }): Promise<void> {
+  // The worker API has no panel opener. Use the local Orca CLI with this install's key.
+  const installedKey = basename(fileURLToPath(new URL('../../', import.meta.url)))
+  const key = installedKey.endsWith('.fuel-gauge') ? installedKey : 'local.fuel-gauge'
+  const args = ['plugin', 'open', key, '--panel', 'interval', '--environment', 'local', '--json']
+  const resources = (process as NodeJS.Process & { resourcesPath?: string }).resourcesPath
+  const bundledCli = resources && join(resources, 'app.asar.unpacked', 'out', 'cli', 'index.js')
+  const options = { signal, timeout: 5000, windowsHide: true }
+  if (bundledCli && await access(bundledCli).then(() => true, () => false)) {
+    await run(process.execPath, [bundledCli, ...args], {
+      ...options,
+      env: { ...process.env, ELECTRON_RUN_AS_NODE: '1' }
+    })
+  } else {
+    await run(process.env.ORCA_CLI_COMMAND || (process.platform === 'linux' ? 'orca-ide' : 'orca'), args, options)
+  }
+}
+
+async function applySettings(orca: OrcaWorkerApi): Promise<void> {
+  const revision = ++settingsRevision
+  const value = await orca.settings.get('refreshMinutes').catch(() => undefined)
+  if (disposed || revision !== settingsRevision) return
+  refreshMinutes = parseRefreshMinutes(value) ?? defaultRefreshMinutes
+  clearTimeout(refreshTimer)
+  if (inFlight) {
+    void paintStatus(orca)
+    await inFlight
+  }
+  if (!disposed && revision === settingsRevision) void refresh(orca)
 }
 
 export async function deactivate(): Promise<void> {
@@ -94,11 +133,6 @@ async function refreshOnce(orca: OrcaWorkerApi): Promise<Status> {
       const timestamp = Date.parse(previous.updatedAt)
       if (Number.isFinite(timestamp)) lastRefreshAt = timestamp
     }
-    const config = await orca.settings.get()
-    const value = config.refreshMinutes
-    if (typeof value === 'number' && Number.isFinite(value)) {
-      refreshMinutes = Math.min(35_000, Math.max(5, Math.round(value)))
-    }
     if (restoring && lastRefreshAt !== undefined) await paintStatus(orca)
     const ignoreFile = await readJson(join(directory, 'ignored-providers.json'))
     const ignored = new Set(Array.isArray(ignoreFile) ? ignoreFile : [])
@@ -143,7 +177,7 @@ function currentStatus(): Status {
   const age = lastRefreshAt === undefined ? undefined : Math.max(0, Date.now() - lastRefreshAt)
   const active = age !== undefined && age <= 1.5 * refreshMinutes * minuteMs
   const label = age === undefined ? 'inactive' : active ? formatAge(age) : `inactive (${formatAge(age)})`
-  return { text: `Fuel Gauge · ${label}`, tone: active ? 'neutral' : 'warning', tooltip: 'Click to refresh' }
+  return { text: `Fuel Gauge · ${label}`, tone: active ? 'neutral' : 'warning', tooltip }
 }
 
 async function paintStatus(orca: OrcaWorkerApi): Promise<Status> {
