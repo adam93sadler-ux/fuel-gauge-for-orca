@@ -1,11 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 184" role="img"><title>From provider readings to a routing decision</title><rect width="960" height="184" rx="14" fill="#101923"/><g font-family="system-ui,sans-serif"><path d="M30 43a16 16 0 0 1 32 0 M46 42l8-11" fill="none" stroke="#66dbc0" stroke-width="3"/><text x="76" y="43" fill="#eef6fa" font-size="23">From provider readings to a routing decision</text>
-<rect x="30.0" y="74" width="162.4" height="80" rx="9" fill="#202c38" stroke="#415262"/><text x="44.0" y="106" font-size="18" fill="#67dfbf">Providers</text><text x="44.0" y="134" font-size="15" fill="#adbfcb">Usage + resets</text>
-<path d="M194.4 110h16m-5-5 5 5-5 5" fill="none" stroke="#8da5b4" stroke-width="2"/>
-<rect x="214.4" y="74" width="162.4" height="80" rx="9" fill="#202c38" stroke="#415262"/><text x="228.4" y="106" font-size="18" fill="#e8eef2">Orca plugin</text><text x="228.4" y="134" font-size="15" fill="#adbfcb">Refresh</text>
-<path d="M378.8 110h16m-5-5 5 5-5 5" fill="none" stroke="#8da5b4" stroke-width="2"/>
-<rect x="398.8" y="74" width="162.4" height="80" rx="9" fill="#202c38" stroke="#415262"/><text x="412.8" y="106" font-size="18" fill="#e8eef2">latest.json</text><text x="412.8" y="134" font-size="15" fill="#adbfcb">Local snapshot</text>
-<path d="M563.2 110h16m-5-5 5 5-5 5" fill="none" stroke="#8da5b4" stroke-width="2"/>
-<rect x="583.2" y="74" width="162.4" height="80" rx="9" fill="#202c38" stroke="#415262"/><text x="597.2" y="106" font-size="18" fill="#e8eef2">Agent skill</text><text x="597.2" y="134" font-size="15" fill="#adbfcb">Compare tiers</text>
-<path d="M747.6 110h16m-5-5 5 5-5 5" fill="none" stroke="#8da5b4" stroke-width="2"/>
-<rect x="767.6" y="74" width="162.4" height="80" rx="9" fill="#202c38" stroke="#415262"/><text x="781.6" y="106" font-size="18" fill="#e8eef2">Decision</text><text x="781.6" y="134" font-size="15" fill="#adbfcb">Assign work</text>
-</g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 334" role="img" aria-labelledby="title">
+<title id="title">Providers to Orca plugin to local snapshot to agent skill to routing decision</title>
+<rect x="0" y="0" width="580" height="334" rx="16" fill="#101b25" stroke="none"/>
+<g font-family="DejaVu Sans, sans-serif">
+<text x="24" y="42" fill="#f0f6f7" font-size="28" font-weight="700" text-anchor="start">How a reading becomes a route</text>
+<rect x="18" y="63" width="544" height="44" rx="9" fill="#1a2936" stroke="none"/>
+<g transform="translate(36 83)"><path d="M0 13v-8m8 8v-18m8 18v-12" fill="none" stroke="#78ebc1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+<text x="77" y="92" fill="#f0f6f7" font-size="20" font-weight="700" text-anchor="start">Providers</text>
+<text x="236" y="92" fill="#bed0dc" font-size="19" font-weight="400" text-anchor="start">Read quota and balance</text>
+<path d="M44 108v6m-3-3 3 3 3-3" fill="none" stroke="#78ebc1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="18" y="116" width="544" height="44" rx="9" fill="#1a2936" stroke="none"/>
+<path d="M37.4 143.4 L30.8 145.8" fill="none" stroke="#78ebc1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M37.0 141.8 L30.1 142.5" fill="none" stroke="#78ebc1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M37.1 140.1 L30.1 139.2" fill="none" stroke="#78ebc1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M37.5 138.5 L31.0 135.9" fill="none" stroke="#78ebc1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M38.3 137.0 L32.5 133.0" fill="none" stroke="#78ebc1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M39.4 135.7 L34.8 130.5" fill="none" stroke="#78ebc1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M40.8 134.8 L37.5 128.6" fill="none" stroke="#78ebc1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M42.3 134.2 L40.7 127.4" fill="none" stroke="#78ebc1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M44.0 134.0 L44.0 127.0" fill="none" stroke="#78ebc1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M45.7 134.2 L47.3 127.4" fill="none" stroke="#78ebc1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M47.2 134.8 L50.5 128.6" fill="none" stroke="#78ebc1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M48.6 135.7 L53.2 130.5" fill="none" stroke="#78ebc1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M49.7 137.0 L55.5 133.0" fill="none" stroke="#78ebc1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M50.5 138.5 L57.0 135.9" fill="none" stroke="#526676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M50.9 140.1 L57.9 139.2" fill="none" stroke="#526676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M51.0 141.8 L57.9 142.5" fill="none" stroke="#526676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M50.6 143.4 L57.2 145.8" fill="none" stroke="#526676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M44 141l6.859999999999999 -7.42" fill="none" stroke="#f0f6f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="44" cy="141" r="1.75" fill="#78ebc1"/>
+<text x="77" y="145" fill="#f0f6f7" font-size="20" font-weight="700" text-anchor="start">Orca plugin</text>
+<text x="236" y="145" fill="#bed0dc" font-size="19" font-weight="400" text-anchor="start">Refresh readings</text>
+<path d="M44 161v6m-3-3 3 3 3-3" fill="none" stroke="#78ebc1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="18" y="169" width="544" height="44" rx="9" fill="#1a2936" stroke="none"/>
+<g transform="translate(36 189)"><path d="M0 -8h12l5 5v15H0z M4 2h8m-8 5h8" fill="none" stroke="#78ebc1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+<text x="77" y="198" fill="#f0f6f7" font-size="20" font-weight="700" text-anchor="start">latest.json</text>
+<text x="236" y="198" fill="#bed0dc" font-size="19" font-weight="400" text-anchor="start">Write local snapshot</text>
+<path d="M44 214v6m-3-3 3 3 3-3" fill="none" stroke="#78ebc1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="18" y="222" width="544" height="44" rx="9" fill="#1a2936" stroke="none"/>
+<g transform="translate(36 242)"><path d="M0 -5h18m-18 12h18 M5 -9v8m8 4v8" fill="none" stroke="#78ebc1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+<text x="77" y="251" fill="#f0f6f7" font-size="20" font-weight="700" text-anchor="start">Agent skill</text>
+<text x="236" y="251" fill="#bed0dc" font-size="19" font-weight="400" text-anchor="start">Compare same-tier models</text>
+<path d="M44 267v6m-3-3 3 3 3-3" fill="none" stroke="#78ebc1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="18" y="275" width="544" height="44" rx="9" fill="#1a2936" stroke="none"/>
+<g transform="translate(36 295)"><path d="M0 2l6 6 13-15" fill="none" stroke="#78ebc1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+<text x="77" y="304" fill="#f0f6f7" font-size="20" font-weight="700" text-anchor="start">Decision</text>
+<text x="236" y="304" fill="#bed0dc" font-size="19" font-weight="400" text-anchor="start">Assign the next job</text>
+</g>
+</svg>

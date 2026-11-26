@@ -1,4 +1,4 @@
-# Fuel Gauge for Orca
+# ![Fuel Gauge for Orca — Route each tier to the provider with room.](docs/hero.svg)
 
 Fuel Gauge pairs an Orca status-bar plugin with an agent skill. The plugin reads provider allowances and reset times. When an orchestrating agent assigns a job, the skill helps it find a model at the requested tier on a provider with enough room to finish. Use subscriptions before their allowances reset and save metered APIs for last.
 
