@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 184" role="img"><title>Orca status bar</title><rect width="960" height="184" rx="14" fill="#101923"/><g font-family="system-ui,sans-serif"><path d="M30 43a16 16 0 0 1 32 0 M46 42l8-11" fill="none" stroke="#66dbc0" stroke-width="3"/><text x="76" y="43" fill="#eef6fa" font-size="23">Orca status bar</text>
+<rect x="30.0" y="74" width="439.0" height="80" rx="9" fill="#202c38" stroke="#415262"/><text x="44.0" y="106" font-size="18" fill="#67dfbf">Fuel Gauge · 3m ago</text><text x="44.0" y="134" font-size="15" fill="#adbfcb">Recent snapshot</text>
+<rect x="491.0" y="74" width="439.0" height="80" rx="9" fill="#202c38" stroke="#415262"/><text x="505.0" y="106" font-size="18" fill="#e8eef2">Fuel Gauge · inactive</text><text x="505.0" y="134" font-size="15" fill="#adbfcb">Awaiting refresh</text>
+</g></svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 184" role="img"><title>From provider readings to a routing decision</title><rect width="960" height="184" rx="14" fill="#101923"/><g font-family="system-ui,sans-serif"><path d="M30 43a16 16 0 0 1 32 0 M46 42l8-11" fill="none" stroke="#66dbc0" stroke-width="3"/><text x="76" y="43" fill="#eef6fa" font-size="23">From provider readings to a routing decision</text>
+<rect x="30.0" y="74" width="162.4" height="80" rx="9" fill="#202c38" stroke="#415262"/><text x="44.0" y="106" font-size="18" fill="#67dfbf">Providers</text><text x="44.0" y="134" font-size="15" fill="#adbfcb">Usage + resets</text>
+<path d="M194.4 110h16m-5-5 5 5-5 5" fill="none" stroke="#8da5b4" stroke-width="2"/>
+<rect x="214.4" y="74" width="162.4" height="80" rx="9" fill="#202c38" stroke="#415262"/><text x="228.4" y="106" font-size="18" fill="#e8eef2">Orca plugin</text><text x="228.4" y="134" font-size="15" fill="#adbfcb">Refresh</text>
+<path d="M378.8 110h16m-5-5 5 5-5 5" fill="none" stroke="#8da5b4" stroke-width="2"/>
+<rect x="398.8" y="74" width="162.4" height="80" rx="9" fill="#202c38" stroke="#415262"/><text x="412.8" y="106" font-size="18" fill="#e8eef2">latest.json</text><text x="412.8" y="134" font-size="15" fill="#adbfcb">Local snapshot</text>
+<path d="M563.2 110h16m-5-5 5 5-5 5" fill="none" stroke="#8da5b4" stroke-width="2"/>
+<rect x="583.2" y="74" width="162.4" height="80" rx="9" fill="#202c38" stroke="#415262"/><text x="597.2" y="106" font-size="18" fill="#e8eef2">Agent skill</text><text x="597.2" y="134" font-size="15" fill="#adbfcb">Compare tiers</text>
+<path d="M747.6 110h16m-5-5 5 5-5 5" fill="none" stroke="#8da5b4" stroke-width="2"/>
+<rect x="767.6" y="74" width="162.4" height="80" rx="9" fill="#202c38" stroke="#415262"/><text x="781.6" y="106" font-size="18" fill="#e8eef2">Decision</text><text x="781.6" y="134" font-size="15" fill="#adbfcb">Assign work</text>
+</g></svg>

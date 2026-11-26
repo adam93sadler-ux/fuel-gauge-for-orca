@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 184" role="img"><title>One Strong job · subscription capacity</title><rect width="960" height="184" rx="14" fill="#101923"/><g font-family="system-ui,sans-serif"><path d="M30 43a16 16 0 0 1 32 0 M46 42l8-11" fill="none" stroke="#66dbc0" stroke-width="3"/><text x="76" y="43" fill="#eef6fa" font-size="23">One Strong job · subscription capacity</text>
+<rect x="30.0" y="74" width="208.5" height="80" rx="9" fill="#202c38" stroke="#415262"/><text x="44.0" y="106" font-size="18" fill="#67dfbf">Strong job</text><text x="44.0" y="134" font-size="15" fill="#adbfcb">Keep tier</text>
+<path d="M240.5 110h16m-5-5 5 5-5 5" fill="none" stroke="#8da5b4" stroke-width="2"/>
+<rect x="260.5" y="74" width="208.5" height="80" rx="9" fill="#202c38" stroke="#415262"/><text x="274.5" y="106" font-size="18" fill="#e8eef2">Codex · Strong</text><text x="274.5" y="134" font-size="15" fill="#adbfcb">94% used</text>
+<path d="M471.0 110h16m-5-5 5 5-5 5" fill="none" stroke="#8da5b4" stroke-width="2"/>
+<rect x="491.0" y="74" width="208.5" height="80" rx="9" fill="#202c38" stroke="#415262"/><text x="505.0" y="106" font-size="18" fill="#67dfbf">Claude · Strong</text><text x="505.0" y="134" font-size="15" fill="#adbfcb">26% used · selected</text>
+<rect x="721.5" y="74" width="208.5" height="80" rx="9" fill="#202c38" stroke="#415262"/><text x="735.5" y="106" font-size="18" fill="#9aabba">Metered API</text><text x="735.5" y="134" font-size="15" fill="#adbfcb">Last resort</text>
+</g></svg>

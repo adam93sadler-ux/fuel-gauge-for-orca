@@ -1,0 +1,53 @@
+{
+  "$schema": "https://raw.githubusercontent.com/stablyai/orca/main/docs/schemas/plugins/orca-plugin.v2.schema.json",
+  "manifestVersion": 2,
+  "execution": "trusted-worker",
+  "id": "fuel-gauge",
+  "name": "Fuel Gauge",
+  "version": "0.1.0",
+  "description": "Local AI usage and DeepSeek API balance in Orca, with a shared snapshot for the Fuel Gauge skill.",
+  "author": {
+    "name": "Fuel Gauge contributors"
+  },
+  "license": "MIT",
+  "engines": {
+    "orca": ">=1.4.248"
+  },
+  "main": "src/main.ts",
+  "pluginApi": 1,
+  "contributes": {
+    "statusBarItems": [
+      {
+        "id": "fuel-gauge",
+        "text": "Fuel Gauge · inactive",
+        "icon": "gauge",
+        "tone": "warning",
+        "tooltip": "Click to refresh",
+        "command": "fuel-gauge.refresh"
+      }
+    ],
+    "commands": [
+      {
+        "id": "fuel-gauge.refresh",
+        "title": "Fuel Gauge: Refresh now"
+      }
+    ],
+    "settings": [
+      {
+        "key": "refreshMinutes",
+        "title": "Refresh interval (minutes)",
+        "type": "integer",
+        "default": 15,
+        "minimum": 5
+      }
+    ]
+  },
+  "capabilities": [
+    {
+      "kind": "settings:own"
+    },
+    {
+      "kind": "storage:own"
+    }
+  ]
+}

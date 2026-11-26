@@ -1,0 +1,19 @@
+name: Validate plugin manifest
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check manifest and entry point
+        run: |
+          node <<'JS'
+          const fs = require('node:fs')
+          const assert = require('node:assert/strict')
+          const manifest = JSON.parse(fs.readFileSync('plugin/orca-plugin.json', 'utf8'))
+          assert.equal(manifest.manifestVersion, 2)
+          assert.equal(manifest.execution, 'trusted-worker')
+          assert.ok(fs.statSync('plugin/' + manifest.main).isFile())
+          JS
